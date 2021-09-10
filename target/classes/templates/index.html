@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+    
+    <head>
+        <title>Eventosapp</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <h1 class="navbar navbar-light">Lista de Eventos</h1>
+              <a href="/cadastrarEvento"><button type="button" class="btn btn-primary my-2 my-sm-0">Cadastrar Eventos</button></a>
+        </nav>
+        
+
+        <div class="container-lg mt-2">
+            <table class="table  table-striped table-borderless">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Local</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="evento : ${eventos}">
+                        <td><a th:href="${#mvc.url('CE#detalhesEvento').arg(0, evento.id).build}"><span th:text="${evento.nome}"></span></a></td>
+                        <td><span th:text="${evento.local}"></span></td>
+                        <td><span th:text="${evento.data}"></span></td>
+                        <td><span th:text="${evento.hora}"></span></td>
+                        <td><a class="btn btn-primary my-2 my-sm-0" th:href="${#mvc.url('CE#deletarEvento').arg(0, evento.id).build}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg></a></td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    </body>
+</html>
